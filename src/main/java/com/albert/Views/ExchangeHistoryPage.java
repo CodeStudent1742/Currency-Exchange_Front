@@ -1,4 +1,4 @@
-package com.albert.currency;
+package com.albert.Views;
 
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -11,17 +11,21 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
-@Route("user")
+@Route("exchange")
 @CssImport("./styles/shared-styles.css")
-public class UserPage extends AppLayout {
+public class ExchangeHistoryPage extends AppLayout {
 
-    public UserPage() {
+    public ExchangeHistoryPage() {
         createHeader();
         createDrawer();
+
     }
     private void createHeader() {
-        H1 title = new H1("Wybór użytkownika");
-        HorizontalLayout header  = new HorizontalLayout(new DrawerToggle(), title);
+        H1 title = new H1("Historia dokonanych wymian");
+        Button userChoiceButton = new Button("Wybierz użytkownika");
+        userChoiceButton.addClassName("user-choice-button");
+        userChoiceButton.addClickListener(event -> userChoiceButton.getUI().ifPresent(ui -> ui.navigate("user")));
+        HorizontalLayout header  = new HorizontalLayout(new DrawerToggle(), title, userChoiceButton);
         header.setAlignItems(FlexComponent.Alignment.CENTER);
         header.expand(title);
         header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
@@ -34,9 +38,9 @@ public class UserPage extends AppLayout {
         Anchor main = new Anchor("", "Strona główna");
         Anchor account = new Anchor("account", "Konto");
         Anchor cart = new Anchor("cart", "Koszyk");
-        Anchor cantor = new Anchor("cantor", "Cantor");
-        Anchor exchange = new Anchor("exchange", "Historia wymian");
-        VerticalLayout drawer = new VerticalLayout(main, account, cart,cantor,exchange);
+        Anchor cantor = new Anchor("cantor", "Kantor");
+        VerticalLayout drawer = new VerticalLayout(main,account, cart, cantor);
         addToDrawer(drawer);
     }
+
 }

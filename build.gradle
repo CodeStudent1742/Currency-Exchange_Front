@@ -1,57 +1,43 @@
-buildscript {
-    repositories {
-    	mavenCentral()
-	    maven { setUrl("https://maven.vaadin.com/vaadin-prereleases") }
-        maven { setUrl("https://maven.vaadin.com/vaadin-addons") }
-		}
-}
 plugins {
-	id 'org.springframework.boot' version '2.7.6'
+	id 'org.springframework.boot' version '2.7.5'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id 'com.vaadin' version '23.2.5'
 	id 'java'
-	id 'com.vaadin'
 }
 
-defaultTasks("clean", "build")
-
-group = 'com.example'
+group = 'com.carrentalfrontend'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = '11'
 
 repositories {
 	mavenCentral()
-	maven { setUrl("https://maven.vaadin.com/vaadin-prereleases") }
-	maven { setUrl("https://maven.vaadin.com/vaadin-addons") }
 }
 
-configurations {
-	developmentOnly
-	runtimeClasspath {
-		extendsFrom developmentOnly
-	}
+jar {
+	enabled = false
+}
+
+ext {
+	set('vaadinVersion', "23.2.5")
 }
 
 dependencies {
-	implementation('com.vaadin:vaadin-spring-boot-starter')
-	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.vaadin:vaadin-spring-boot-starter'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+//    runtimeOnly 'org.postgresql:postgresql:42.5.0'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
 }
 
 dependencyManagement {
 	imports {
-		mavenBom "com.vaadin:vaadin-bom:$vaadinVersion"
+		mavenBom "com.vaadin:vaadin-bom:${vaadinVersion}"
 	}
 }
 
-test {
+tasks.named('test') {
 	useJUnitPlatform()
-}
-
-// The following pnpmEnable = true is not needed as pnpm is used by default,
-// this is just an example of how to configure the Gradle Vaadin Plugin:
-// for more configuration options please see: https://vaadin.com/docs/latest/guide/start/gradle/#all-options
-vaadin {
-	pnpmEnable = true
 }
