@@ -1,6 +1,7 @@
 package com.albert.form;
 
 import com.albert.Views.UserPage;
+import com.albert.domain.dto.NewUserDto;
 import com.albert.domain.dto.UserDto;
 import com.albert.service.UserService;
 import com.vaadin.flow.component.button.Button;
@@ -21,25 +22,12 @@ public class UserForm extends FormLayout {
     public UserForm(UserPage userPage) {
         HorizontalLayout buttons = new HorizontalLayout(save, delete);
         save.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        add(userName,buttons);
+        add(userName, buttons);
         binder.bindInstanceFields(this);
         this.userPage = userPage;
 
-        save.addClickListener(event -> save());
-        delete.addClickListener(event -> delete());
-    }
-    private void save() {
-        UserDto userDto = binder.getBean();
-        service.save(userDto);
-        userPage.refresh();
-        setUserDto(null);
-    }
-
-    private void delete() {
-        UserDto userDto = binder.getBean();
-        service.delete(userDto);
-        userPage.refresh();
-        setUserDto(null);
+        save.addClickListener(event -> saveUser());
+        delete.addClickListener(event -> deleteUser());
     }
 
     public void setUserDto(UserDto userDto) {
@@ -52,5 +40,23 @@ public class UserForm extends FormLayout {
             userName.focus();
         }
     }
+
+    private void saveUser() {
+        UserDto userDto = binder.getBean();
+        service.save(mapToNewUser(userDto));
+        userPage.refresh();
+        setUserDto(null);
+    }
+
+    private void deleteUser() {
+        UserDto userDto = binder.getBean();
+        service.delete(userDto.getUserName());
+        userPage.refresh();
+        setUserDto(null);
+    }
+    public NewUserDto mapToNewUser(UserDto userDto){
+        return new NewUserDto(userDto.getUserName());
+    }
 }
+
 
