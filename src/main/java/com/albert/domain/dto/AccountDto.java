@@ -14,11 +14,11 @@ public class AccountDto {
 
     private Long accountId;
 
-    private BigDecimal balancePLN;
-    private BigDecimal balanceEUR;
-    private BigDecimal balanceUSD;
-    private BigDecimal balanceCHF;
-    private BigDecimal balanceGBP;
+    private BigDecimal balancePLN = BigDecimal.valueOf(0);
+    private BigDecimal balanceEUR= BigDecimal.valueOf(0);
+    private BigDecimal balanceUSD= BigDecimal.valueOf(0);
+    private BigDecimal balanceCHF= BigDecimal.valueOf(0);
+    private BigDecimal balanceGBP= BigDecimal.valueOf(0);
 
     private Long userId;
 

@@ -8,10 +8,7 @@ import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.Anchor;
-import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -20,11 +17,13 @@ import com.vaadin.flow.router.Route;
 @Route("user")
 @CssImport("./styles/shared-styles.css")
 public class UserPage extends AppLayout {
+    private Label selectedUserLabel = new Label("");
+    private Label selectedUserTextLabel = new Label("Wybrany użytkownik:");
     private Button addDeleteUser = new Button("Dodaj/Usuń użytkownika");
     private Grid<UserDto> grid = new Grid<>(UserDto.class);
     private UserService userService = UserService.getInstance();
     private UserForm form = new UserForm(this);
-//    private UserDto selectedUser;
+    public static UserDto selectedUser;
 
 
     public UserPage() {
@@ -35,9 +34,7 @@ public class UserPage extends AppLayout {
         addMainContent();
 
         refresh();
-//        grid.asSingleSelect().addValueChangeListener(event -> {
-//            selectedUser = grid.asSingleSelect().getValue();
-//        });
+
     }
 
     private void createHeader() {
@@ -64,16 +61,21 @@ public class UserPage extends AppLayout {
     private void addMainContent() {
         H2 viewTitle = new H2("Użytkownicy");
         grid.setColumns("userName", "userId", "cartId", "accountId");
+        grid.asSingleSelect().addValueChangeListener(event -> {
+            selectedUser = grid.asSingleSelect().getValue();
+            selectedUserLabel.setText(selectedUser.getUserName());
+        });
         HorizontalLayout mainContent = new HorizontalLayout(grid, form);
         addDeleteUser.addClickListener(e -> {
             grid.asSingleSelect().clear();
             form.setUserDto(new UserDto());
         });
 
-        HorizontalLayout toolbar = new HorizontalLayout(addDeleteUser);
+        HorizontalLayout toolbar = new HorizontalLayout(addDeleteUser,selectedUserTextLabel, selectedUserLabel);
+        toolbar.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
 
         Div content = new Div();
-        content.add(viewTitle,toolbar, mainContent);
+        content.add(viewTitle, toolbar, mainContent);
         setContent(content);
     }
 
@@ -81,10 +83,7 @@ public class UserPage extends AppLayout {
         grid.setItems(userService.getUsers());
     }
 
-//    public void updateUserList() {
-//        grid.setItems(userService.getUsers());
-//    }
-//public UserDto getSelectedUser() {
-//    return selectedUser;
-//}
+    public static UserDto getSelectedUser() {
+        return selectedUser;
+    }
 }

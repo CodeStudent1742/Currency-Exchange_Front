@@ -13,7 +13,6 @@ import java.util.List;
 public class UserService {
 
     private final UserClient userClient;
-
     private static UserService userService;
 
     public static UserService getInstance() {
