@@ -10,11 +10,14 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.combobox.ComboBox;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.*;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+
+import java.math.BigDecimal;
 
 @Route("account")
 @CssImport("./styles/shared-styles.css")
@@ -82,10 +85,20 @@ public class AccountPage extends AppLayout {
                     refresh();
                 }
             });
+
             Button withdrawButton = new Button("Wypłać", event -> {
                 if (selectedUser != null) {
-                    accountService.withdrawFromAccount(selectedUser.getAccountId(), currencyBox.getValue(), Double.valueOf(valueField.getValue()));
-                    refresh();
+                    String currency = currencyBox.getValue();
+                    Double value = Double.valueOf(valueField.getValue());
+                    AccountDto account = accountService.getAccount(selectedUser.getAccountId());
+                    BigDecimal balance = account.getBalanceForCurrency(currency);
+
+                    if (BigDecimal.valueOf(value).compareTo(balance) > 0) {
+                        showNotification("Próbujesz wypłacić więcej niż masz na koncie w danej walucie.");
+                    } else {
+                        accountService.withdrawFromAccount(selectedUser.getAccountId(), currency, value);
+                        refresh();
+                    }
                 }
             });
             HorizontalLayout form = new HorizontalLayout(valueField, currencyBox, putButton, withdrawButton);
@@ -111,5 +124,9 @@ public class AccountPage extends AppLayout {
     public void setSelectedUser(UserDto selectedUser) {
         this.selectedUser = selectedUser;
         refresh();
+    }
+    private void showNotification(String message) {
+        Notification notification = new Notification(message, 4000);
+        notification.open();
     }
 }

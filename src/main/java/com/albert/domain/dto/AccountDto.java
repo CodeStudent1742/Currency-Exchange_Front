@@ -22,4 +22,20 @@ public class AccountDto {
 
     private Long userId;
 
+    public BigDecimal getBalanceForCurrency(String currency) {
+        switch (currency) {
+            case "PLN":
+                return balancePLN;
+            case "EUR":
+                return balanceEUR;
+            case "USD":
+                return balanceUSD;
+            case "CHF":
+                return balanceCHF;
+            case "GBP":
+                return balanceGBP;
+            default:
+                throw new IllegalArgumentException("Nieprawidłowa waluta: " + currency);
+        }
+    }
 }
