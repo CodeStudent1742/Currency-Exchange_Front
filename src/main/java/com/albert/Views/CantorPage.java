@@ -1,7 +1,6 @@
 package com.albert.Views;
 
 import com.albert.domain.Cantor;
-import com.albert.service.AccountService;
 import com.albert.service.CantorService;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -69,6 +68,31 @@ public class CantorPage extends AppLayout {
         HorizontalLayout mainContent = new HorizontalLayout(cantorGrid);
         Div content = new Div(mainContent);
         setContent(content);
+
+//        VerticalLayout mainContent = new VerticalLayout(cantorGrid, transactionForm);
+//        mainContent.setAlignItems(FlexComponent.Alignment.STRETCH);
+//        setContent(mainContent);
+//
+//        transactionForm.setAddListener(this::addTransaction);
+//        transactionForm.setCancelListener(event -> transactionForm.setVisible(false));
     }
+//    private void addTransaction(ClickEvent<Button> event) {
+//        ExchangeOperation operation = transactionForm.getOperation();
+//        Double volume = transactionForm.getVolume();
+//        Double value = transactionForm.getValue();
+//        Long cartId = selectedUser.getCartId();
+//
+//        TransactionDto transaction = new TransactionDto(operation, volume, cartId);
+//        CantorService.getInstance().addTransaction(transaction);
+//
+//        // Clear the form after adding the transaction
+//        transactionForm.clear();
+//
+//        // Show a notification that the transaction has been added to the cart
+//        Notification.show("Transaction added to cart");
+//
+//        // Update the cart view to show the added transaction
+//        getUI().ifPresent(ui -> ui.getPage().reload());
+//    }
 
 }
