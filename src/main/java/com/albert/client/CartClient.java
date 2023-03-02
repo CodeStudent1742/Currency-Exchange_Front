@@ -1,6 +1,5 @@
 package com.albert.client;
 
-import com.albert.domain.Cantor;
 import com.albert.domain.dto.CartDto;
 import com.albert.domain.dto.TransactionDto;
 import lombok.RequiredArgsConstructor;

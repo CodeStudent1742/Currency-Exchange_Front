@@ -1,4 +1,4 @@
-package com.albert.domain;
+package com.albert.domain.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,11 +9,11 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cantor {
+public class CantorDto {
 
     private Long cantorRatesId;
 
-    private LocalDate ratesCheckDate = LocalDate.now();
+    private LocalDate ratesCheckDate;
 
     private Double purchaseRateEUR;
 

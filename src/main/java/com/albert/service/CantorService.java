@@ -1,10 +1,8 @@
 package com.albert.service;
 
 
-import com.albert.client.AccountClient;
 import com.albert.client.CantorClient;
-import com.albert.domain.Cantor;
-import com.albert.domain.dto.AccountDto;
+import com.albert.domain.dto.CantorDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +20,7 @@ public class CantorService {
         }
         return cantorService;
     }
-    public Cantor getCantor() {
+    public CantorDto getCantor() {
         return cantorClient.getCantor();
     }
 

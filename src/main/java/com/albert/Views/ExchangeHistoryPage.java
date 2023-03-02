@@ -39,7 +39,8 @@ public class ExchangeHistoryPage extends AppLayout {
         Anchor account = new Anchor("account", "Konto");
         Anchor cart = new Anchor("cart", "Koszyk");
         Anchor cantor = new Anchor("cantor", "Kantor");
-        VerticalLayout drawer = new VerticalLayout(main,account, cart, cantor);
+        Anchor exchange = new Anchor("exchange", "Historia_wymian");
+        VerticalLayout drawer = new VerticalLayout(main,account, cart, cantor, exchange);
         addToDrawer(drawer);
     }
 

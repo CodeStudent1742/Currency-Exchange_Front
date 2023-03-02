@@ -36,9 +36,10 @@ public class CartPage extends AppLayout {
     private void createDrawer() {
         Anchor main = new Anchor("", "Strona główna");
         Anchor account = new Anchor("account", "Konto");
-        Anchor cantor = new Anchor("cantor", "Cantor");
-        Anchor exchange = new Anchor("exchange", "Historia wymian");
-        VerticalLayout drawer = new VerticalLayout(main, account, cantor, exchange);
+        Anchor cart = new Anchor("cart", "Koszyk");
+        Anchor cantor = new Anchor("cantor", "Kantor");
+        Anchor exchange = new Anchor("exchange", "Historia_wymian");
+        VerticalLayout drawer = new VerticalLayout(main,account, cart, cantor, exchange);
         addToDrawer(drawer);
     }
 }

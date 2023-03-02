@@ -1,7 +1,6 @@
 package com.albert.client;
 
-import com.albert.domain.Cantor;
-import com.albert.domain.dto.AccountDto;
+import com.albert.domain.dto.CantorDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -31,12 +30,12 @@ public class CantorClient {
         return cantorClient;
     }
 
-    public Cantor getCantor(){
+    public CantorDto getCantor(){
         URI uriA = UriComponentsBuilder.fromUriString(CANTOR_URL)
                 .build().toUri();
         try {
-            Cantor cantor = restTemplate.getForObject(uriA, Cantor.class);
-            return (Objects.requireNonNull(cantor));
+            CantorDto cantorDto = restTemplate.getForObject(uriA, CantorDto.class);
+            return (Objects.requireNonNull(cantorDto));
         } catch (RestClientException e) {
             log.error(e.getMessage(), e);
             return null;
