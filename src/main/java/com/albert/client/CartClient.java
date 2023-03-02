@@ -73,6 +73,16 @@ public class CartClient {
             log.error(e.getMessage(), e);
         }
     }
+
+    public void deleteTransactionFromCart(Long cartId, Long transactionId) {
+        URI uri = UriComponentsBuilder.fromUriString(CART_URL + "/" + cartId + "/delete/" + transactionId)
+                .build().toUri();
+        try {
+            restTemplate.put(uri,CartDto.class);
+        } catch (RestClientException e) {
+            log.error(e.getMessage(), e);
+        }
+    }
 }
 
 

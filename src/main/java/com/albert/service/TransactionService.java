@@ -29,4 +29,8 @@ public class TransactionService {
     public void deleteTransaction(Long transactionId){
         transactionClient.deleteTransaction(transactionId);
     }
+
+    public void updateTransaction(TransactionDto transactionDto){
+        transactionClient.updateTransaction(transactionDto);
+    }
 }

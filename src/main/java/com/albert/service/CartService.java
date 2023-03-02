@@ -28,10 +28,13 @@ public class CartService {
     public void addTransactionToCart(Long cartId, Long transactionId){
         cartClient.addTransactionToCart(cartId,transactionId);
     }
-    public List<TransactionDto> getTrensactionInCart(Long cartId){
+    public List<TransactionDto> getTransactionInCart(Long cartId){
         return cartClient.getTransactionsInCart(cartId);
     }
     public void makeExchangeOrderFromCart(Long cartId){
         cartClient.makeExchangeOrderFromCart(cartId);
+    }
+    public void deleteTransactionFromCart(Long cartId, Long transactionId){
+        cartClient.deleteTransactionFromCart(cartId,transactionId);
     }
 }
