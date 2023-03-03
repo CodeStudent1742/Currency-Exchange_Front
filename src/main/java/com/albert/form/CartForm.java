@@ -1,6 +1,5 @@
 package com.albert.form;
 
-import com.albert.Views.CartPage;
 import com.albert.domain.dto.ExchangeOperation;
 import com.albert.domain.dto.TransactionDto;
 import com.albert.service.CartService;
@@ -18,7 +17,6 @@ public class CartForm extends FormLayout {
 
     private ComboBox<ExchangeOperation> exchangeOperationComboBox = new ComboBox<>("Operacja wymiany");
     private TextField transactionVolumeField = new TextField("Wolumen");
-    private TextField transactionValueField = new TextField("Wartość");
 
     private Button saveButton = new Button("Zapisz");
     private Button cancelButton = new Button("Anuluj");

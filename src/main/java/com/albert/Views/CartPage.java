@@ -66,7 +66,13 @@ public class CartPage extends AppLayout {
             transactionGrid.setColumns("transactionId", "exchangeOperation", "transactionVolume", "transactionValue");
             transactionGrid.setItems(cartService.getTransactionInCart(selectedUser.getCartId()));
             CartForm cartForm = new CartForm(transactionGrid);
-            VerticalLayout mainContent = new VerticalLayout(viewTitle, transactionGrid,cartForm);
+            Button makeOrderButton = new Button("Dokonaj Wymiany");
+            makeOrderButton.addClickListener(event -> {
+                // Perform make order operation on selectedUser's cart
+                cartService.makeExchangeOrderFromCart(selectedUser.getCartId());
+                makeOrderButton.getUI().ifPresent(ui -> ui.navigate("cart"));
+            });
+            VerticalLayout mainContent = new VerticalLayout(viewTitle, transactionGrid,makeOrderButton,cartForm);
             mainContent.setDefaultHorizontalComponentAlignment(FlexComponent.Alignment.CENTER);
             mainContent.setAlignItems(FlexComponent.Alignment.CENTER);
             mainContent.setSpacing(true);

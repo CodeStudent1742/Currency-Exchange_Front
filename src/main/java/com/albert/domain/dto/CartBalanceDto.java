@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -11,11 +13,11 @@ public class CartBalanceDto {
 
     private Long cartBalanceId;
 
-    private Double balancePLN = 0.0;
-    private Double balanceEUR = 0.0;
-    private Double balanceUSD = 0.0;
-    private Double balanceCHF = 0.0;
-    private Double balanceGBP = 0.0;
+    private BigDecimal balancePLN = BigDecimal.valueOf(0);
+    private BigDecimal balanceEUR = BigDecimal.valueOf(0);
+    private BigDecimal balanceUSD = BigDecimal.valueOf(0);
+    private BigDecimal balanceCHF = BigDecimal.valueOf(0);
+    private BigDecimal balanceGBP = BigDecimal.valueOf(0);
 
     private Long cartId;
 
