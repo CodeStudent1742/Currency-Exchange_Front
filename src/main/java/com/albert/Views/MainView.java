@@ -41,7 +41,7 @@ public class MainView extends AppLayout {
         Anchor cart = new Anchor("cart", "Koszyk");
         Anchor cantor = new Anchor("cantor", "Kantor");
         Anchor exchange = new Anchor("exchange", "Historia_wymian");
-        VerticalLayout drawer = new VerticalLayout(main,account, cart, cantor, exchange);
+        VerticalLayout drawer = new VerticalLayout(main,account,cantor,cart,exchange);
         addToDrawer(drawer);
     }
 

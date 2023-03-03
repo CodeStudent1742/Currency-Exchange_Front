@@ -34,7 +34,7 @@ public class CartService {
     public void makeExchangeOrderFromCart(Long cartId){
         cartClient.makeExchangeOrderFromCart(cartId);
     }
-    public void deleteTransactionFromCart(Long cartId, Long transactionId){
+    public void removeTransactionFromCart(Long cartId, Long transactionId){
         cartClient.deleteTransactionFromCart(cartId,transactionId);
     }
 }

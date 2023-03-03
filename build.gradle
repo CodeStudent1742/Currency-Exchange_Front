@@ -5,7 +5,7 @@ plugins {
 	id 'java'
 }
 
-group = 'com.carrentalfrontend'
+group = 'com.currencyExchange'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = "14"
 
@@ -20,16 +20,14 @@ jar {
 ext {
 	set('vaadinVersion', "23.2.5")
 }
-
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'com.vaadin:vaadin-spring-boot-starter'
+	compileOnly group: 'com.vaadin', name: 'flow', version: '23.3.4', ext: 'pom'
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
-//    runtimeOnly 'org.postgresql:postgresql:42.5.0'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-
-
 }
 
 dependencyManagement {
@@ -42,3 +40,5 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 targetCompatibility = JavaVersion.VERSION_14
+
+
