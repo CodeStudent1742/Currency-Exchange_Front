@@ -99,8 +99,7 @@ public class CantorPage extends AppLayout {
         Long cartId = selectedUser.getCartId();
 
         TransactionDto transaction = new TransactionDto(operation, volume, cartId);
-        transactionService.createTransaction(transaction);
-        cartService.addTransactionToCart(selectedUser.getCartId(), transaction.getTransactionId());
+        cartService.addTransactionToCart(selectedUser.getCartId(), transaction);
 
         showNotification("Tranzakcja dodana do koszyka");
 

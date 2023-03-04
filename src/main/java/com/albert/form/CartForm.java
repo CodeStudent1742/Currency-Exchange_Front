@@ -16,9 +16,9 @@ import static com.albert.Views.UserPage.selectedUser;
 public class CartForm extends FormLayout {
 
     private ComboBox<ExchangeOperation> exchangeOperationComboBox = new ComboBox<>("Operacja wymiany");
-    private TextField transactionVolumeField = new TextField("Wolumen");
+    private TextField transactionVolumeField = new TextField("Zakup");
 
-    private Button saveButton = new Button("Zapisz");
+    private Button saveButton = new Button("Dodaj");
     private Button cancelButton = new Button("Anuluj");
 
     private TransactionDto transactionDto;
@@ -46,7 +46,7 @@ public class CartForm extends FormLayout {
             transactionVolumeField.setValue(String.valueOf(transactionDto.getTransactionVolume()));
         } else {
             exchangeOperationComboBox.setValue(null);
-            transactionVolumeField.clear();
+            transactionVolumeField.setValue("0");
         }
     }
 

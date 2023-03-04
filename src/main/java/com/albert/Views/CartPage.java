@@ -1,5 +1,6 @@
 package com.albert.Views;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.albert.domain.dto.TransactionDto;
 import com.albert.form.CartForm;
@@ -93,14 +94,29 @@ public class CartPage extends AppLayout {
 
             // Dodanie przycisku "Dokonaj Wymiany"
             Button makeOrderButton = new Button("Dokonaj Wymiany");
-            makeOrderButton.addClickListener(event -> {
+            Dialog makeOrderDialog = new Dialog();
+            VerticalLayout makeOrderDialogLayout = new VerticalLayout();
+            makeOrderDialogLayout.add(new H3("Czy na pewno chcesz dokonać wymiany?"));
+            Button makeOrderConfirmButton = new Button("Potwierdź");
+            makeOrderConfirmButton.addClickListener(event -> {
                 // Perform make order operation on selectedUser's cart
                 cartService.makeExchangeOrderFromCart(selectedUser.getCartId());
-                makeOrderButton.getUI().ifPresent(ui -> ui.navigate("cart"));
+                makeOrderDialog.close();
+                UI.getCurrent().getPage().reload();
             });
+            Button makeOrderCancelButton = new Button("Anuluj");
+            makeOrderCancelButton.addClickListener(event -> makeOrderDialog.close());
+            makeOrderDialogLayout.add(new HorizontalLayout(makeOrderConfirmButton, makeOrderCancelButton));
+            makeOrderDialog.add(makeOrderDialogLayout);
+            makeOrderDialog.setWidth("600px");
+            makeOrderDialog.setHeight("300px");
+            makeOrderButton.addClickListener(event -> {
+                makeOrderDialog.open();
+            });
+             HorizontalLayout buttonLayout = new HorizontalLayout(removeButton, makeOrderButton);
 
             CartForm cartForm = new CartForm(transactionGrid);
-            VerticalLayout mainContent = new VerticalLayout(viewTitle, transactionGrid, removeButton, makeOrderButton, cartForm);
+            VerticalLayout mainContent = new VerticalLayout(viewTitle, transactionGrid, buttonLayout, cartForm);
             mainContent.setDefaultHorizontalComponentAlignment(FlexComponent.Alignment.CENTER);
             mainContent.setAlignItems(FlexComponent.Alignment.CENTER);
             mainContent.setSpacing(true);

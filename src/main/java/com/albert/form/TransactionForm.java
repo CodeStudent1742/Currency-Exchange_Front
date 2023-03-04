@@ -14,7 +14,7 @@ import com.vaadin.flow.component.textfield.TextField;
 
 public class TransactionForm extends Div {
     private ComboBox<ExchangeOperation> operationSelect = new ComboBox<>("Operacja wymiany");
-    private TextField volumeInput = new TextField("Wolumen Tranzakcji");
+    private TextField volumeInput = new TextField("Zakup");
     private Label valueLabel = new Label("Wartość Tranzakcji");
     private Button addButton = new Button("Dodaj");
     private Button cancelButton = new Button("Anuluj");
@@ -72,7 +72,7 @@ public class TransactionForm extends Div {
 
     public void clear() {
         operationSelect.clear();
-        volumeInput.setValue("");
+        volumeInput.setValue("0");
         valueLabel.setText(String.format("Wartość tranzakcji:"));
     }
 }

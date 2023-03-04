@@ -82,15 +82,17 @@ public class AccountPage extends AppLayout {
             ComboBox<String> currencyBox = new ComboBox<>("Waluta", "PLN", "EUR", "USD", "CHF", "GBP");
             Button putButton = new Button("Wpłać", event -> {
                 if (selectedUser != null) {
-                    accountService.putIntoAccount(selectedUser.getAccountId(), currencyBox.getValue(), Double.valueOf(valueField.getValue()));
+                    accountService.putIntoAccount(selectedUser.getAccountId(), currencyBox.getValue(), Double.parseDouble(valueField.getValue()));
                     refresh();
+                    currencyBox.setValue(null);
+                    valueField.setValue("0");
                 }
             });
 
             Button withdrawButton = new Button("Wypłać", event -> {
                 if (selectedUser != null) {
                     String currency = currencyBox.getValue();
-                    Double value = Double.valueOf(valueField.getValue());
+                    Double value = Double.parseDouble(valueField.getValue());
                     AccountDto account = accountService.getAccount(selectedUser.getAccountId());
                     BigDecimal balance = account.getBalanceForCurrency(currency);
 
@@ -99,12 +101,15 @@ public class AccountPage extends AppLayout {
                     } else {
                         accountService.withdrawFromAccount(selectedUser.getAccountId(), currency, value);
                         refresh();
+                        currencyBox.setValue(null);
+                        valueField.setValue("0");
                     }
                 }
             });
-            HorizontalLayout form = new HorizontalLayout(valueField, currencyBox, putButton, withdrawButton);
-
-            Div content = new Div(viewTitle, selectedUserLabel, balances, form);
+           HorizontalLayout buttonsLayout = new HorizontalLayout(putButton, withdrawButton);
+            HorizontalLayout form = new HorizontalLayout(valueField, currencyBox);
+            VerticalLayout layout = new VerticalLayout(form,buttonsLayout);
+            Div content = new Div(viewTitle, selectedUserLabel, balances, layout);
             setContent(content);
             refresh();
         }
@@ -112,7 +117,6 @@ public class AccountPage extends AppLayout {
 
     public void refresh() {
         if (selectedUser != null) {
-//            selectedUserLabel.setText("Wybrany użytkownik: " + selectedUser.getUserName());
             AccountDto account = accountService.getAccount(selectedUser.getAccountId());
             balancePLNLabel.setText(account.getBalancePLN().toString());
             balanceEURLabel.setText(account.getBalanceEUR().toString());
@@ -122,10 +126,6 @@ public class AccountPage extends AppLayout {
         }
     }
 
-    public void setSelectedUser(UserDto selectedUser) {
-        this.selectedUser = selectedUser;
-        refresh();
-    }
     private void showNotification(String message) {
         Notification notification = new Notification(message, 4000);
         notification.open();

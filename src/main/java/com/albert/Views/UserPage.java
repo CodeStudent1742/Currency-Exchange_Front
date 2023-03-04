@@ -63,10 +63,13 @@ public class UserPage extends AppLayout {
         grid.setColumns("userName", "userId", "cartId", "accountId");
         grid.asSingleSelect().addValueChangeListener(event -> {
             selectedUser = grid.asSingleSelect().getValue();
-            selectedUserLabel.setText(selectedUser.getUserName());
+            if (selectedUser != null) {
+                selectedUserLabel.setText(selectedUser.getUserName());
+            }
         });
         HorizontalLayout mainContent = new HorizontalLayout(grid, form);
         addDeleteUser.addClickListener(e -> {
+            selectedUserLabel.setText("");
             grid.asSingleSelect().clear();
             form.setUserDto(new UserDto());
         });

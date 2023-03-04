@@ -25,8 +25,8 @@ public class CartService {
     public CartDto getCart(Long cartId){
         return cartClient.getCart(cartId);
     }
-    public void addTransactionToCart(Long cartId, Long transactionId){
-        cartClient.addTransactionToCart(cartId,transactionId);
+    public void addTransactionToCart(Long cartId, TransactionDto transaction){
+        cartClient.addTransactionToCart(cartId,transaction);
     }
     public List<TransactionDto> getTransactionInCart(Long cartId){
         return cartClient.getTransactionsInCart(cartId);

@@ -55,11 +55,11 @@ public class CartClient {
         }
     }
 
-    public void addTransactionToCart(Long cartId, Long transactionId) {
-        URI uriCT = UriComponentsBuilder.fromUriString(CART_URL + "/" + cartId + "/" + transactionId)
+    public void addTransactionToCart(Long cartId,TransactionDto transaction) {
+        URI uriCT = UriComponentsBuilder.fromUriString(CART_URL + "/" + cartId )
                 .build().toUri();
         try {
-            restTemplate.put(uriCT,CartDto.class);
+            restTemplate.put(uriCT,transaction);
         } catch (RestClientException e) {
             log.error(e.getMessage(), e);
         }

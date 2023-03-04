@@ -1,6 +1,8 @@
 package com.albert.client;
 
+import com.albert.domain.dto.ExchangeOrderDto;
 import com.albert.domain.dto.NewUserDto;
+import com.albert.domain.dto.TransactionDto;
 import com.albert.domain.dto.UserDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -68,4 +70,16 @@ public class UserClient {
             log.error(e.getMessage(), e);
         }
     }
+    public List<ExchangeOrderDto> getUserExchangeOrders(Long userId) {
+            URI uri = UriComponentsBuilder.fromUriString(USER_URL + "/" + userId + "/exchangeOrders"  )
+                    .build().toUri();
+        try {
+            ExchangeOrderDto[] exchangeOrdersDto = restTemplate.getForObject(uri, ExchangeOrderDto[].class);
+            return Arrays.asList(Objects.requireNonNull(exchangeOrdersDto));
+        } catch (RestClientException e) {
+            log.error(e.getMessage(), e);
+            return new ArrayList<>();
+        }
+    }
+
 }
