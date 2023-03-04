@@ -3,7 +3,6 @@ package com.albert.Views;
 import com.albert.domain.dto.AccountDto;
 import com.albert.domain.dto.UserDto;
 import com.albert.service.AccountService;
-import com.albert.service.UserService;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
@@ -58,7 +57,7 @@ public class AccountPage extends AppLayout {
         Anchor account = new Anchor("account", "Konto");
         Anchor cart = new Anchor("cart", "Koszyk");
         Anchor cantor = new Anchor("cantor", "Kantor");
-        Anchor exchange = new Anchor("exchange", "Historia_wymian");
+        Anchor exchange = new Anchor("exchange", "Historia wymian");
         VerticalLayout drawer = new VerticalLayout(main,account,cantor,cart,exchange);
         addToDrawer(drawer);
     }
@@ -67,7 +66,6 @@ public class AccountPage extends AppLayout {
         if (selectedUser != null) {
             H2 viewTitle = new H2("Saldo użytkownika " + selectedUser.getUserName());
 
-            // saldo użytkownika
             HorizontalLayout balances = new HorizontalLayout(
                     new VerticalLayout(new H3("PLN"), balancePLNLabel),
                     new VerticalLayout(new H3("EUR"), balanceEURLabel),
@@ -77,7 +75,6 @@ public class AccountPage extends AppLayout {
             );
 
 
-            // formularz wpłaty/wypłaty
             TextField valueField = new TextField("Kwota");
             ComboBox<String> currencyBox = new ComboBox<>("Waluta", "PLN", "EUR", "USD", "CHF", "GBP");
             Button putButton = new Button("Wpłać", event -> {

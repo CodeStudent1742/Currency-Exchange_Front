@@ -48,7 +48,7 @@ public class ExchangeHistoryPage extends AppLayout {
         Anchor account = new Anchor("account", "Konto");
         Anchor cart = new Anchor("cart", "Koszyk");
         Anchor cantor = new Anchor("cantor", "Kantor");
-        Anchor exchange = new Anchor("exchange", "Historia_wymian");
+        Anchor exchange = new Anchor("exchange", "Historia wymian");
         VerticalLayout drawer = new VerticalLayout(main, account, cantor, cart, exchange);
         addToDrawer(drawer);
     }
@@ -62,10 +62,8 @@ public class ExchangeHistoryPage extends AppLayout {
             grid.addColumn(ExchangeOrderDto::getOrderId).setHeader("Order Id");
             grid.addColumn(ExchangeOrderDto::getExchangeDate).setHeader("Exchange Date");
             grid.addColumn(ExchangeOrderDto::getExchangeStatus).setHeader("Exchange Status");
-
             grid.setSelectionMode(Grid.SelectionMode.NONE);
 
-            // Define a grid column for displaying order transactions
             grid.addComponentColumn(exchangeOrder -> {
                 List<Long> orderTransactionIds = exchangeOrder.getOrderTransactionIds();
                 VerticalLayout verticalLayout = new VerticalLayout();
@@ -76,7 +74,6 @@ public class ExchangeHistoryPage extends AppLayout {
                 return verticalLayout;
             }).setHeader("Order Transactions");
 
-            // Add the grid to the layout
             setContent(grid);
         }
     }

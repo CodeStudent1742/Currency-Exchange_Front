@@ -6,7 +6,6 @@ import com.albert.domain.dto.TransactionDto;
 import com.albert.form.TransactionForm;
 import com.albert.service.CantorService;
 import com.albert.service.CartService;
-import com.albert.service.TransactionService;
 import com.vaadin.flow.component.ClickEvent;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -14,7 +13,6 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Anchor;
-
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.notification.Notification;
@@ -30,7 +28,6 @@ import static com.albert.Views.UserPage.selectedUser;
 public class CantorPage extends AppLayout {
     TransactionForm transactionForm = new TransactionForm();
     CartService cartService = CartService.getInstance();
-    TransactionService transactionService = TransactionService.getInstance();
     private CantorService cantorService = CantorService.getInstance();
 
     public CantorPage() {
@@ -58,8 +55,8 @@ public class CantorPage extends AppLayout {
         Anchor account = new Anchor("account", "Konto");
         Anchor cart = new Anchor("cart", "Koszyk");
         Anchor cantor = new Anchor("cantor", "Kantor");
-        Anchor exchange = new Anchor("exchange", "Historia_wymian");
-        VerticalLayout drawer = new VerticalLayout(main,account,cantor,cart,exchange);
+        Anchor exchange = new Anchor("exchange", "Historia wymian");
+        VerticalLayout drawer = new VerticalLayout(main, account, cantor, cart, exchange);
         addToDrawer(drawer);
     }
 
@@ -105,8 +102,8 @@ public class CantorPage extends AppLayout {
 
         transactionForm.clear();
 
-//        getUI().ifPresent(ui -> ui.getPage().reload());
     }
+
     private void showNotification(String message) {
         Notification notification = new Notification(message, 4000);
         notification.open();

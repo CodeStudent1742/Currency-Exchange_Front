@@ -1,22 +1,23 @@
 package com.albert.Views;
 
-import com.vaadin.flow.component.UI;
-import com.vaadin.flow.component.dialog.Dialog;
 import com.albert.domain.dto.TransactionDto;
 import com.albert.form.CartForm;
 import com.albert.service.CartService;
-import com.albert.service.TransactionService;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.*;
+import com.vaadin.flow.component.html.Anchor;
+import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
-
 
 import static com.albert.Views.UserPage.selectedUser;
 
@@ -25,7 +26,6 @@ import static com.albert.Views.UserPage.selectedUser;
 public class CartPage extends AppLayout {
 
     private Grid<TransactionDto> transactionGrid = new Grid<>(TransactionDto.class);
-    private TransactionService transactionService = TransactionService.getInstance();
     private CartService cartService = CartService.getInstance();
 
     public CartPage() {
@@ -53,7 +53,7 @@ public class CartPage extends AppLayout {
         Anchor account = new Anchor("account", "Konto");
         Anchor cart = new Anchor("cart", "Koszyk");
         Anchor cantor = new Anchor("cantor", "Kantor");
-        Anchor exchange = new Anchor("exchange", "Historia_wymian");
+        Anchor exchange = new Anchor("exchange", "Historia wymian");
         VerticalLayout drawer = new VerticalLayout(main, account, cantor, cart, exchange);
         addToDrawer(drawer);
     }
@@ -64,7 +64,6 @@ public class CartPage extends AppLayout {
             transactionGrid.setColumns("transactionId", "exchangeOperation", "transactionVolume", "transactionValue");
             transactionGrid.setItems(cartService.getTransactionInCart(selectedUser.getCartId()));
 
-            // Formularz do usuwania transakcji z koszyka
             Dialog confirmDialog = new Dialog();
             VerticalLayout confirmDialogLayout = new VerticalLayout();
             confirmDialogLayout.add(new H3("Czy na pewno chcesz usunąć wybraną transakcję z koszyka?"));
@@ -82,24 +81,17 @@ public class CartPage extends AppLayout {
             confirmDialog.setWidth("600px");
             confirmDialog.setHeight("300px");
 
-            // Dodanie przycisku "Usuń z koszyka"
             Button removeButton = new Button("Usuń z koszyka");
             removeButton.setEnabled(false);
-            transactionGrid.asSingleSelect().addValueChangeListener(event -> {
-                removeButton.setEnabled(event.getValue() != null);
-            });
-            removeButton.addClickListener(event -> {
-                confirmDialog.open();
-            });
+            transactionGrid.asSingleSelect().addValueChangeListener(event -> removeButton.setEnabled(event.getValue() != null));
+            removeButton.addClickListener(event -> confirmDialog.open());
 
-            // Dodanie przycisku "Dokonaj Wymiany"
             Button makeOrderButton = new Button("Dokonaj Wymiany");
             Dialog makeOrderDialog = new Dialog();
             VerticalLayout makeOrderDialogLayout = new VerticalLayout();
             makeOrderDialogLayout.add(new H3("Czy na pewno chcesz dokonać wymiany?"));
             Button makeOrderConfirmButton = new Button("Potwierdź");
             makeOrderConfirmButton.addClickListener(event -> {
-                // Perform make order operation on selectedUser's cart
                 cartService.makeExchangeOrderFromCart(selectedUser.getCartId());
                 makeOrderDialog.close();
                 UI.getCurrent().getPage().reload();
@@ -110,9 +102,7 @@ public class CartPage extends AppLayout {
             makeOrderDialog.add(makeOrderDialogLayout);
             makeOrderDialog.setWidth("600px");
             makeOrderDialog.setHeight("300px");
-            makeOrderButton.addClickListener(event -> {
-                makeOrderDialog.open();
-            });
+            makeOrderButton.addClickListener(event -> makeOrderDialog.open());
              HorizontalLayout buttonLayout = new HorizontalLayout(removeButton, makeOrderButton);
 
             CartForm cartForm = new CartForm(transactionGrid);

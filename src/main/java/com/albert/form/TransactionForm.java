@@ -24,8 +24,6 @@ public class TransactionForm extends Div {
 
         HorizontalLayout buttonLayout = new HorizontalLayout(addButton, cancelButton);
         add(operationSelect, volumeInput, valueLabel, buttonLayout);
-
-        // add a listener to the volume input to update the value label when the volume changes
         volumeInput.addValueChangeListener(e -> updateValueLabel());
     }
 
