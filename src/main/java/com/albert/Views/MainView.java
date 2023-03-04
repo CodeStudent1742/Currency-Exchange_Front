@@ -23,6 +23,7 @@ public class MainView extends AppLayout {
 
     private void createHeader() {
         H1 title = new H1("Kantor Internetowy");
+        title.getStyle().set("text-align", "center");
         Button userChoiceButton = new Button("Wybierz użytkownika");
         userChoiceButton.addClassName("user-choice-button");
         userChoiceButton.addClickListener(event -> getUI().ifPresent(ui -> ui.navigate("user")));
@@ -62,14 +63,15 @@ public class MainView extends AppLayout {
                         "Stronę Historii wymian prezentującą dokonane wymiany.");
         front.getStyle().set("white-space", "pre-line");
         Paragraph backEntry = new Paragraph("Część \"BackEndowa\" składa się między innymi z:");
-        frontEntry.getStyle().set("text-align", "center").set("font-weight", "bold");
+        backEntry.getStyle().set("text-align", "center").set("font-weight", "bold");
         Paragraph back = new Paragraph(
                 "Endpointów GET,POST,PUT,DELETE \n" +
                         "Pobierania danych z API NBP oraz GooglePlace(ta wersja strony nie zawiera funkcjonalności Google)\n" +
                         "Schedulera pobierającego kursy NBP i na ich bazie przeliczający kursy kantoru.\n" +
                         "Operacji na bazie ORM MYSQL \n" +
                         "Testów jednostkowych\n" +
-                        "Wykorzystuje wzorce projektowe Builder oraz Fasada");
+                        "Wykorzystuje wzorce projektowe Builder oraz Fasada\n" +
+                        "Korzysta z Spring i Hibernate");
         back.getStyle().set("white-space", "pre-line");
 
         Div content = new Div();

@@ -40,6 +40,7 @@ public class AccountPage extends AppLayout {
 
     private void createHeader() {
         H1 title = new H1("Strona konta");
+        title.getStyle().set("text-align", "center");
         Button userChoiceButton = new Button("Wybierz użytkownika");
         userChoiceButton.addClassName("user-choice-button");
         userChoiceButton.addClickListener(event -> userChoiceButton.getUI().ifPresent(ui -> ui.navigate("user")));

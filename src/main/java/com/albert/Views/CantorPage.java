@@ -38,6 +38,7 @@ public class CantorPage extends AppLayout {
 
     private void createHeader() {
         H1 title = new H1("Kantor - wymiana walut");
+        title.getStyle().set("text-align", "center");
         Button userChoiceButton = new Button("Wybierz użytkownika");
         userChoiceButton.addClassName("user-choice-button");
         userChoiceButton.addClickListener(event -> userChoiceButton.getUI().ifPresent(ui -> ui.navigate("user")));

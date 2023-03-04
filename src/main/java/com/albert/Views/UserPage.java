@@ -39,6 +39,7 @@ public class UserPage extends AppLayout {
 
     private void createHeader() {
         H1 title = new H1("Wybór użytkownika");
+        title.getStyle().set("text-align", "center");
         HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), title);
         header.setAlignItems(FlexComponent.Alignment.CENTER);
         header.expand(title);
