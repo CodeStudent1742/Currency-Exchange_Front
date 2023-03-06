@@ -42,8 +42,6 @@ public class UserClient {
             log.error(e.getMessage(), e);
             return new ArrayList<>();
         }
-
-
     }
     public void saveNewUser(NewUserDto newUserDto) {
         try {

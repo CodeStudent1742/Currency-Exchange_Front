@@ -55,7 +55,8 @@ public class UserPage extends AppLayout {
         Anchor cart = new Anchor("cart", "Koszyk");
         Anchor cantor = new Anchor("cantor", "Kantor");
         Anchor exchange = new Anchor("exchange", "Historia wymian");
-        VerticalLayout drawer = new VerticalLayout(main,account,cantor,cart,exchange);
+        Anchor nearby = new Anchor("nearby", "Kantory Kraków Rynek");
+        VerticalLayout drawer = new VerticalLayout(main, account, cantor, cart, exchange,nearby);
         addToDrawer(drawer);
     }
 
