@@ -66,7 +66,7 @@ public class MainView extends AppLayout {
         Paragraph backEntry = new Paragraph("Część \"BackEndowa\" składa się między innymi z:");
         backEntry.getStyle().set("text-align", "center").set("font-weight", "bold");
         Paragraph back = new Paragraph(
-                "Endpointów GET,POST,PUT,DELETE \n" +
+                "Endpointów wykorzystujących żądania GET,POST,PUT,DELETE \n" +
                         "Pobierania danych z API NBP oraz GooglePlace(ta wersja strony nie zawiera funkcjonalności Google)\n" +
                         "Schedulera pobierającego kursy NBP i na ich bazie przeliczający kursy kantoru.\n" +
                         "Operacji na bazie ORM MYSQL \n" +

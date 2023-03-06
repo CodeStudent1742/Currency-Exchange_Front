@@ -54,22 +54,19 @@ public class GoogleNearbyPage extends AppLayout {
         H2 viewTitle = new H2("Kantory w okolicy Rynku w Krakowie");
         viewTitle.getStyle().set("text-align", "center");
         Paragraph information = new Paragraph(
-                "Docelowo w tym miejscu mogłaby być wyświetlona lokalizacja kantorów stacjonarnych,przynależących do kantoru strony kantoru online.\n" );
+                "Docelowo w tym miejscu mozna wyświetlić lokalizację kantorow stacjonarnych, które są związane ze stroną internetową.\n" );
         information.getStyle().set("white-space", "pre-line");
-        Paragraph cantors = new Paragraph("Kantory:");
-        cantors.getStyle().set("text-align", "center").set("font-weight", "bold");
 
         List<GoogleNearbyDto> cantorsList = GoogleNearbyService.getInstance().getCantorsNearbyKRKMainSquare();
 
-        // Create a grid to display the list of cantors
         Grid<GoogleNearbyDto> grid = new Grid<>();
         grid.setItems(cantorsList);
         grid.addColumn(GoogleNearbyDto::getName).setHeader("Nazwa");
-        grid.addColumn(GoogleNearbyDto::getRating).setHeader("Ocena");
         grid.addColumn(GoogleNearbyDto::getVicinity).setHeader("Adres");
+        grid.addColumn(GoogleNearbyDto::getRating).setHeader("Ocena");
 
         Div content = new Div();
-        content.add(viewTitle, information, cantors, grid);
+        content.add(viewTitle, information, grid);
         setContent(content);
     }
 
