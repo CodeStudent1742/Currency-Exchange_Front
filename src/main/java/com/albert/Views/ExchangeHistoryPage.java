@@ -3,15 +3,9 @@ package com.albert.Views;
 import com.albert.client.UserClient;
 import com.albert.domain.dto.ExchangeOrderDto;
 import com.vaadin.flow.component.applayout.AppLayout;
-import com.vaadin.flow.component.applayout.DrawerToggle;
-import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.grid.Grid;
-import com.vaadin.flow.component.html.Anchor;
-import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Label;
-import com.vaadin.flow.component.orderedlayout.FlexComponent;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
@@ -24,35 +18,12 @@ import static com.albert.Views.UserPage.selectedUser;
 public class ExchangeHistoryPage extends AppLayout {
 
     public ExchangeHistoryPage() {
-        createHeader();
-        createDrawer();
+        HeaderView headerView = new HeaderView();
+        addToNavbar(headerView);
+
+        DrawerView drawerView = new DrawerView();
+        addToDrawer(drawerView);
         addMainContent();
-    }
-
-    private void createHeader() {
-        H1 title = new H1("Historia dokonanych wymian");
-        title.getStyle().set("text-align", "center");
-        Button userChoiceButton = new Button("Wybierz użytkownika");
-        userChoiceButton.addClassName("user-choice-button");
-        userChoiceButton.addClickListener(event -> userChoiceButton.getUI().ifPresent(ui -> ui.navigate("user")));
-        HorizontalLayout header = new HorizontalLayout(new DrawerToggle(), title, userChoiceButton);
-        header.setAlignItems(FlexComponent.Alignment.CENTER);
-        header.expand(title);
-        header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
-        header.setWidth("100%");
-        header.addClassName("header");
-        addToNavbar(header);
-    }
-
-    private void createDrawer() {
-        Anchor main = new Anchor("", "Strona główna");
-        Anchor account = new Anchor("account", "Konto");
-        Anchor cart = new Anchor("cart", "Koszyk");
-        Anchor cantor = new Anchor("cantor", "Kantor");
-        Anchor exchange = new Anchor("exchange", "Historia wymian");
-        Anchor nearby = new Anchor("nearby", "Kantory Kraków Rynek");
-        VerticalLayout drawer = new VerticalLayout(main, account, cantor, cart, exchange,nearby);
-        addToDrawer(drawer);
     }
 
     private void addMainContent() {
