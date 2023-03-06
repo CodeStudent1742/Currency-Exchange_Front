@@ -8,8 +8,8 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 
 public class HeaderView extends HorizontalLayout {
 
-    public HeaderView() {
-        H1 title = new H1("Kantor Internetowy");
+    public HeaderView(String Title) {
+        H1 title = new H1(Title);
         title.getStyle().set("text-align", "center");
         Button userChoiceButton = new Button("Wybierz użytkownika");
         userChoiceButton.addClassName("user-choice-button");

@@ -34,7 +34,7 @@ public class AccountPage extends AppLayout {
     private Label balanceGBPLabel = new Label("");
 
     public AccountPage() {
-        HeaderView headerView = new HeaderView();
+        HeaderView headerView = new HeaderView("Strona konta");
         addToNavbar(headerView);
 
         DrawerView drawerView = new DrawerView();

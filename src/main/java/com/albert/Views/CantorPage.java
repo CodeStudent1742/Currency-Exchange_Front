@@ -28,7 +28,7 @@ public class CantorPage extends AppLayout {
     private CantorService cantorService = CantorService.getInstance();
 
     public CantorPage() {
-        HeaderView headerView = new HeaderView();
+        HeaderView headerView = new HeaderView("Kantor - wymiana walut");
         addToNavbar(headerView);
 
         DrawerView drawerView = new DrawerView();

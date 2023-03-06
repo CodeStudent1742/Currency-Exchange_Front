@@ -27,7 +27,7 @@ public class UserPage extends AppLayout {
 
 
     public UserPage() {
-        HeaderView headerView = new HeaderView();
+        HeaderView headerView = new HeaderView("Wybór użytkownika");
         addToNavbar(headerView);
 
         DrawerView drawerView = new DrawerView();

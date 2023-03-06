@@ -26,7 +26,7 @@ public class CartPage extends AppLayout {
     private CartService cartService = CartService.getInstance();
 
     public CartPage() {
-        HeaderView headerView = new HeaderView();
+        HeaderView headerView = new HeaderView("Koszyk z transakcjami");
         addToNavbar(headerView);
 
         DrawerView drawerView = new DrawerView();

@@ -18,7 +18,7 @@ import static com.albert.Views.UserPage.selectedUser;
 public class ExchangeHistoryPage extends AppLayout {
 
     public ExchangeHistoryPage() {
-        HeaderView headerView = new HeaderView();
+        HeaderView headerView = new HeaderView("Historia dokonanych wymian");
         addToNavbar(headerView);
 
         DrawerView drawerView = new DrawerView();

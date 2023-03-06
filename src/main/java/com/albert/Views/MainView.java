@@ -13,7 +13,7 @@ import com.vaadin.flow.router.Route;
 public class MainView extends AppLayout {
 
     public MainView() {
-        HeaderView headerView = new HeaderView();
+        HeaderView headerView = new HeaderView("Kantor internetowy");
         addToNavbar(headerView);
 
         DrawerView drawerView = new DrawerView();
@@ -26,28 +26,29 @@ public class MainView extends AppLayout {
         H2 viewTitle = new H2("Opis strony");
         viewTitle.getStyle().set("text-align", "center");
         Paragraph entry = new Paragraph(
-                "Jest to prototypowa/podglądowa strona stworzona przy pomocy frameworku Vaadin w języku Java.\n" +
-                        "Strona ma na celu sprawdzenie i zaprezentowanie działania REST API uproszczonego Kantoru Wymiany Walut.");
+                "Jest to prototypowa/poglądowa strona stworzona przy użyciu frameworka Vaadin w języku Java.\n" +
+                        "Celem strony jest sprawdzenie i zaprezentowanie działania uproszczonego API REST Kantoru Wymiany Walut.");
         entry.getStyle().set("white-space", "pre-line");
         Paragraph frontEntry = new Paragraph("Część \"FrontEndowa\" zawiera:");
         frontEntry.getStyle().set("text-align", "center").set("font-weight", "bold");
         Paragraph front = new Paragraph(
-                "Stronę dodawania/usuwania i wybierania użytkownika pod przyciskiem w prawym rogu \"Wybierz użytkownika\".\n" +
-                        "Stronę Konta symulująca wpłacanie i wypłacanie środków.\n" +
-                        "Stronę Kantoru pozwalająca wyświetlić obecne kursy oraz stworzyć tranzakcje.\n" +
-                        "Stronę Koszyka wyświetlająca tranzakcje w koszyku, umożliwiająca dodanie/usunięcie tranzakcji oraz wykonanie operacji wymiany walut.\n" +
-                        "Stronę Historii wymian prezentującą dokonane wymiany.");
+                "- Stronę pozwalającą na dodawanie, usuwanie i wybieranie użytkowników, dostępną pod przyciskiem \"Wybierz użytkownika\" w prawym górnym rogu.\n" +
+                        "- Stronę konta, pozwalającą na symulację wpłacania i wypłacania środków.\n" +
+                        "- Stronę kantoru, umożliwiającą wyświetlenie obecnych kursów oraz wykonanie transakcji wymiany walut.\n" +
+                        "- Stronę koszyka, wyświetlającą transakcje w koszyku, pozwalającą na dodanie/usunięcie transakcji oraz wykonanie operacji wymiany walut.\n" +
+                        "- Stronę historii wymian, prezentującą dokonane wymiany.\n" +
+                        "- Stronę wyświetlającą kantory w okolicy Rynku Głównego w Krakowie (na podstawie odpowiedzi z API Google Places).");
         front.getStyle().set("white-space", "pre-line");
-        Paragraph backEntry = new Paragraph("Część \"BackEndowa\" składa się między innymi z:");
+        Paragraph backEntry = new Paragraph("Część związana z \"BackEndem\" obejmuje m.in.:");
         backEntry.getStyle().set("text-align", "center").set("font-weight", "bold");
         Paragraph back = new Paragraph(
-                "Endpointów wykorzystujących żądania GET,POST,PUT,DELETE \n" +
-                        "Pobierania danych z API NBP oraz GooglePlace(ta wersja strony nie zawiera funkcjonalności Google)\n" +
-                        "Schedulera pobierającego kursy NBP i na ich bazie przeliczający kursy kantoru.\n" +
-                        "Operacji na bazie ORM MYSQL \n" +
-                        "Testów jednostkowych\n" +
-                        "Wykorzystuje wzorce projektowe Builder oraz Fasada\n" +
-                        "Korzysta z Spring i Hibernate");
+                "- Endpointy korzystające z żądań typu GET, POST, PUT, DELETE\n" +
+                        "- Pobieranie danych z API NBP oraz Google Places\n" +
+                        "- Scheduler pobierający kursy z NBP i przeliczający na ich podstawie kursy kantoru\n" +
+                        "- Operacje na bazie danych za pomocą ORM MYSQL\n" +
+                        "- Testy jednostkowe\n" +
+                        "- Wykorzystanie wzorców projektowych Builder oraz Fasada\n" +
+                        "- Wykorzystanie frameworków Spring i Hibernate");
         back.getStyle().set("white-space", "pre-line");
 
         Div content = new Div();

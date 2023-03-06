@@ -17,7 +17,7 @@ import java.util.List;
 public class GoogleNearbyPage extends AppLayout {
 
     public GoogleNearbyPage() {
-        HeaderView headerView = new HeaderView();
+        HeaderView headerView = new HeaderView("Kantory w okolicy Rynku Głównego w Krakowie");
         addToNavbar(headerView);
 
         DrawerView drawerView = new DrawerView();

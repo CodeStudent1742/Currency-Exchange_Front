@@ -1,72 +1,54 @@
-# Vaadin Gradle Skeleton Starter Spring Boot
+﻿# Currency Exchange Application
+This is the FrontEnd part of Currency Exchange Application.
+The BackEnd can be find under link : https://github.com/CodeStudent1742/Currency-Exchange-Individual-Project
 
-This project demos the possibility of having Vaadin project in npm+webpack mode using Gradle.
-Please see the [Starting a Vaadin project using Gradle](https://vaadin.com/docs/latest/guide/start/gradle) for the documentation.
+Last commit in BackEnd application: https://github.com/CodeStudent1742/Currency-Exchange-Individual-Project/commit/9fd90b179b1d08f861b8e22464273a4829e8dd32
 
+FrontEnd without GooglePlaces functionality on **main** branch
 
-Prerequisites:
-* Java 8 or higher
-* node.js and npm. Vaadin Gradle plugin will install those for you
-  automatically (handy for CI), or you can install it to your OS:
-  * Windows: [node.js Download site](https://nodejs.org/en/download/) - use the .msi 64-bit installer
-  * Linux: `sudo apt install npm`
-* Git
-* (Optionally): Intellij Community
+FrontEnd with GooglePlaces functionality on **with_Google_Nearby**  branch
 
-## Vaadin Versions
+This is simplified version o currency exchange application I prepared as final project of Kodilla Fast Track Java Developer Course.
 
-* The [v14](https://github.com/vaadin/base-starter-spring-gradle) branch (the default one)
-  contains the example app for Vaadin 14
-* The [master](https://github.com/vaadin/base-starter-spring-gradle/tree/master) branch
-  contains the example app for Vaadin 19
+# Getting started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+See deployment for notes on how to deploy the project on a live system. Just clone or download the files into a folder and it's ready to be used.*
 
-## Running With Spring Boot via Gradle In Development Mode
+## BackEnd
 
-Run the following command in this repo:
+- Clone the repository
+```
+git clone https://github.com/CodeStudent1742/Currency-Exchange-Individual-Project.git
+```
+- Create a MySql connection as described in the application.properties.
 
-```bash
-./gradlew clean bootRun
+- Build the project
+```
+./gradlew build
+```
+- Application  using external data sources GooglePlaces which require to create an Account and API Key.
+GooglePlaces usage is free only to certain amount of HTTP requests, that is why I do not share my Key.
+To test this functionality you need to create your account and API Key based on instruction in link below:
+https://developers.google.com/maps/documentation/places/web-service/get-api-key?hl=pl
+- Please input your key in application.properties
+![enter image description here](https://snipboard.io/MV0n2o.jpg)
+
+## FrontEnd
+- Clone the repository
+```
+git clone  https://github.com/CodeStudent1742/Currency-Exchange_Front.git
 ```
 
-Now you can open the [http://localhost:8080](http://localhost:8080) with your browser.
-
-## Running With Spring Boot from your IDE In Development Mode
-
-Run the following command in this repo, to create necessary Vaadin config files:
-
-```bash
-./gradlew clean vaadinPrepareFrontend
+- Build the project
 ```
-
-The `build/vaadin-generated/` folder will now contain proper configuration files.
-
-Open the `DemoApplication` class, and Run/Debug its main method from your IDE.
-
-Now you can open the [http://localhost:8080](http://localhost:8080) with your browser.
-
-## Building In Production Mode
-
-Run the following command in this repo:
-
-```bash
-./gradlew clean build -Pvaadin.productionMode
+./gradlew build
 ```
+- There are 2 variants of FrontEnd: on  main branch(without GooglePlaces API usage) and  on with_Google_Nearby branch ( with GooglePlaces API usage)
+- FrontEnd is also presented on PDF added to repository
+## How to run it
 
-That will build this app in production mode as a runnable jar archive; please find the jar file in `build/libs/base-starter-spring-gradle*.jar`.
-You can run the JAR file with:
+Once you have the BackEnd and FrontEnd running start by this address:
 
-```bash
-cd build/libs/
-java -jar base-starter-spring-gradle*.jar
-```
 
-Now you can open the [http://localhost:8080](http://localhost:8080) with your browser.
+http://localhost:8080/
 
-### Building In Production On CI
-
-Usually the CI images will not have node.js+npm available. However, Vaadin Gradle Plugin will download it for you automatically, there is no need for you to do anything.
-To build your app for production in CI, just run:
-
-```bash
-./gradlew clean build -Pvaadin.productionMode
-```
